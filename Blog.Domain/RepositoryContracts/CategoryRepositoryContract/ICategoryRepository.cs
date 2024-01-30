@@ -9,6 +9,6 @@ namespace Blog.Domain.RepositoryContracts.CategoryRepositoryContract
 {
     public interface ICategoryRepository
     {
-        Category AddCategory(Category category);
+        Task<Category> AddCategory(Category category);
     }
 }

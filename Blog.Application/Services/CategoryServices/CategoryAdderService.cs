@@ -19,7 +19,7 @@ namespace Blog.Application.Services.CategoryServices
         {
             _categoryRepository = categoryRepository;
         }
-        public CreateCategoryResponse AddCategory(CreateCategoryRequest request)
+        public async Task<CreateCategoryResponse> AddCategory(CreateCategoryRequest request)
         {
             if(request == null) throw new ArgumentNullException(nameof(request));
 
@@ -27,8 +27,9 @@ namespace Blog.Application.Services.CategoryServices
 
             Category category = request.ToCategory();
             category.Id = Guid.NewGuid();
+            category.DateCreated = DateTime.Now;
 
-            _categoryRepository.AddCategory(category);
+            await _categoryRepository.AddCategory(category);
 
             return category.ToCreateCategoryResponse();
         }

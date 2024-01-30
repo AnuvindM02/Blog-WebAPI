@@ -17,8 +17,12 @@ namespace Blog.WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CreateCategoryRequest request)
         {
-            CreateCategoryResponse response = _categoryAdderService.AddCategory(request);
-            return Ok();
+            if(!ModelState.IsValid)
+            {
+                return ValidationProblem(ModelState);
+            }
+            CreateCategoryResponse response = await _categoryAdderService.AddCategory(request);
+            return Ok(response);
         }
     }
 }

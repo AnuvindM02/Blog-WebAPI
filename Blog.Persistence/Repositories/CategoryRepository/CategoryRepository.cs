@@ -16,10 +16,10 @@ namespace Blog.Persistence.Repositories.CategoryRepository
         {
             _db = db;
         }
-        public Category AddCategory(Category category)
+        public async Task<Category> AddCategory(Category category)
         {
-            _db.Add(category);
-            _db.SaveChanges();
+            _db.Categories.Add(category);
+            await _db.SaveChangesAsync();
             return category;
         }
     }

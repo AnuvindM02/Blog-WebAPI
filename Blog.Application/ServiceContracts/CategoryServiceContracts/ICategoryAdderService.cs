@@ -9,6 +9,6 @@ namespace Blog.Application.ServiceContracts.CategoryServiceContracts
 {
     public interface ICategoryAdderService
     {
-        CreateCategoryResponse AddCategory(CreateCategoryRequest request);
+        Task<CreateCategoryResponse> AddCategory(CreateCategoryRequest request);
     }
 }
