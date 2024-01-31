@@ -1,6 +1,7 @@
 ﻿using Blog.Domain.Entities;
 using Blog.Domain.RepositoryContracts.CategoryRepositoryContract;
 using Blog.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,18 @@ namespace Blog.Persistence.Repositories.CategoryRepository
         {
             _db = db;
         }
+        ///<inheritdoc/>
         public async Task<Category> AddCategory(Category category)
         {
             _db.Categories.Add(category);
             await _db.SaveChangesAsync();
             return category;
+        }
+
+        public async Task<List<Category>> GetAllCategories()
+        {
+            List<Category> categories = await _db.Categories.OrderBy(x => x.UrlHandle).ToListAsync();
+            return categories;
         }
     }
 }

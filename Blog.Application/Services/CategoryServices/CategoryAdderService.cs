@@ -1,4 +1,5 @@
 ﻿using Blog.Application.Common.Helpers;
+using Blog.Application.Features.CategoryFeatures;
 using Blog.Application.Features.CategoryFeatures.CreateCategory;
 using Blog.Application.ServiceContracts.CategoryServiceContracts;
 using Blog.Domain.Entities;
@@ -19,7 +20,7 @@ namespace Blog.Application.Services.CategoryServices
         {
             _categoryRepository = categoryRepository;
         }
-        public async Task<CreateCategoryResponse> AddCategory(CreateCategoryRequest request)
+        public async Task<CategoryResponse> AddCategory(CreateCategoryRequest request)
         {
             if(request == null) throw new ArgumentNullException(nameof(request));
 

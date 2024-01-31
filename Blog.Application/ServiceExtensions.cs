@@ -16,6 +16,7 @@ namespace Blog.Application
         public static void ConfigureApplication(this IServiceCollection services)
         {
             services.AddScoped<ICategoryAdderService,CategoryAdderService>();
+            services.AddScoped<ICategoryGetterService, CategoryGetterService>();
         }
     }
 }
