@@ -16,6 +16,8 @@ namespace Blog.Persistence.Context
 
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<DeletedCategory> DeletedCategories { get; set; }
+        public DbSet<DeletedBlogPosts> DeletedBlogPosts { get; set; }
 
     }
 }

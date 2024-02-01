@@ -32,7 +32,7 @@ namespace Blog.Application.Services.CategoryServices
 
             await _categoryRepository.AddCategory(category);
 
-            return category.ToCreateCategoryResponse();
+            return category.ToCategoryResponse();
         }
     }
 }

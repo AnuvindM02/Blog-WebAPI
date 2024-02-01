@@ -17,6 +17,8 @@ namespace Blog.Application
         {
             services.AddScoped<ICategoryAdderService,CategoryAdderService>();
             services.AddScoped<ICategoryGetterService, CategoryGetterService>();
+            services.AddScoped<ICategoryDeleterService, CategoryDeleterService>();
+            services.AddScoped<ICategoryUpdaterService, CategoryUpdaterService>();
         }
     }
 }

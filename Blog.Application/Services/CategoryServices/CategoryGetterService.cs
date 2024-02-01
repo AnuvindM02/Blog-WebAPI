@@ -30,5 +30,16 @@ namespace Blog.Application.Services.CategoryServices
             List<CategoryResponse> categoriesResponseList = categories.ToCategoryResponseList();
             return categoriesResponseList;
         }
+
+        public async Task<CategoryResponse?> GetCategoryById(Guid id)
+        {
+            Category? category = await _categoryRepository.GetCategoryById(id);
+            if(category==null)
+            {
+                return null;
+            }
+            CategoryResponse? categoryResponse = category.ToCategoryResponse();
+            return categoryResponse;
+        }
     }
 }

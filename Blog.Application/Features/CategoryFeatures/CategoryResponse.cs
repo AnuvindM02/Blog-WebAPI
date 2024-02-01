@@ -24,7 +24,7 @@ namespace Blog.Application.Features.CategoryFeatures
         /// </summary>
         /// <param name="category"></param>
         /// <returns></returns>
-        public static CategoryResponse ToCreateCategoryResponse(this Category category)
+        public static CategoryResponse ToCategoryResponse(this Category category)
         {
             return new CategoryResponse { Id = category.Id, Name = category.Name, UrlHandle = category.UrlHandle, DateCreated = category.DateCreated, DateDeleted = category.DateDeleted, DateUpdated = category.DateUpdated };
         }
@@ -39,7 +39,7 @@ namespace Blog.Application.Features.CategoryFeatures
             List<CategoryResponse> categoryResponses = new List<CategoryResponse>();
             foreach (Category category in categories)
             {
-                categoryResponses.Add(category.ToCreateCategoryResponse());
+                categoryResponses.Add(category.ToCategoryResponse());
             }
             return categoryResponses;
         }
