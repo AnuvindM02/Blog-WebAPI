@@ -12,17 +12,17 @@ namespace Blog.Application.Services.CategoryServices
 {
     public class CategoryUpdaterService : ICategoryUpdaterService
     {
-        private readonly ICategoryRepository _categoryRespository;
+        private readonly ICategoryRepository _categoryRepository;
 
         public CategoryUpdaterService(ICategoryRepository categoryRespository)
         {
-            _categoryRespository = categoryRespository;
+            _categoryRepository = categoryRespository;
         }
 
         public async Task<CategoryResponse> UpdateCategory(CategoryUpdateRequest categoryUpdateRequest)
         {
             Category category = categoryUpdateRequest.ToCategory();
-            Category updatedCategory = await _categoryRespository.UpdateCategory(category);
+            Category updatedCategory = await _categoryRepository.UpdateCategory(category);
             CategoryResponse updatedCategoryResponse = updatedCategory.ToCategoryResponse();
             return updatedCategoryResponse;
         }

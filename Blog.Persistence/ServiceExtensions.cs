@@ -1,5 +1,7 @@
-﻿using Blog.Domain.RepositoryContracts.CategoryRepositoryContract;
+﻿using Blog.Domain.RepositoryContracts.BlogPostRepositoryContract;
+using Blog.Domain.RepositoryContracts.CategoryRepositoryContract;
 using Blog.Persistence.Context;
+using Blog.Persistence.Repositories.BlogPostRepository;
 using Blog.Persistence.Repositories.CategoryRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,7 +18,10 @@ namespace Blog.Persistence
             services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(connectionString));
 
             //services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            //Injecting repositories
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IBlogPostRepository, BlogPostRepository>();
         }
     }
 }

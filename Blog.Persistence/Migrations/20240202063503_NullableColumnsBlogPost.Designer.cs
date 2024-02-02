@@ -4,6 +4,7 @@ using Blog.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Blog.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240202063503_NullableColumnsBlogPost")]
+    partial class NullableColumnsBlogPost
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,6 +124,7 @@ namespace Blog.Persistence.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("FeaturedImageUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsVisible")
@@ -130,6 +134,7 @@ namespace Blog.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ShortDescription")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -137,6 +142,7 @@ namespace Blog.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UrlHandle")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
