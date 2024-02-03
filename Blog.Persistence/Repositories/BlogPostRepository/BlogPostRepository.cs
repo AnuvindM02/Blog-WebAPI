@@ -70,13 +70,13 @@ namespace Blog.Persistence.Repositories.BlogPostRepository
 
         public async Task<List<BlogPost>> GetAllBlogPosts()
         {
-            List<BlogPost> blogPosts = await _db.BlogPosts.OrderByDescending(x => x.DateCreated).ToListAsync();
+            List<BlogPost> blogPosts = await _db.BlogPosts.Include(bp => bp.Categories).OrderByDescending(x => x.DateCreated).ToListAsync();
             return blogPosts;
         }
 
         public async Task<BlogPost?> GetBlogPostById(Guid Id)
         {
-            BlogPost? blogPost = await _db.BlogPosts.FindAsync(Id);
+            BlogPost? blogPost = await _db.BlogPosts.Include(bp => bp.Categories).FirstOrDefaultAsync(bp => bp.Id == Id);
 
             if (blogPost == null)
             {

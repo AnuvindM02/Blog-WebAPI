@@ -1,4 +1,5 @@
-﻿using Blog.Domain.Entities;
+﻿using Blog.Application.Features.CategoryFeatures;
+using Blog.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Blog.Application.Features.BlogPostFeatures.CreateBlogPost
         public DateTimeOffset DateCreated { get; set; }
         public DateTimeOffset? DateUpdated { get; set; }
         public DateTimeOffset? DateDeleted { get; set; }
+        public List<CategoryResponse>? Categories { get; set; }
     }
 
     public static class BlogPostExtensions
@@ -37,9 +39,11 @@ namespace Blog.Application.Features.BlogPostFeatures.CreateBlogPost
                 UrlHandle = blogPost.UrlHandle,
                 PublishedDate = blogPost.PublishedDate,
                 Author = blogPost.Author,
+                IsVisible = blogPost.IsVisible,
                 DateCreated = blogPost.DateCreated,
                 DateDeleted = blogPost.DateDeleted,
-                DateUpdated = blogPost.DateUpdated
+                DateUpdated = blogPost.DateUpdated,
+                Categories = blogPost.Categories.Select(x=>x.ToCategoryResponse()).ToList()
             };
         }
 

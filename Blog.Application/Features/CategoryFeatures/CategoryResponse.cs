@@ -15,6 +15,19 @@ namespace Blog.Application.Features.CategoryFeatures
         public DateTimeOffset? DateDeleted { get; set; }
         public string Name { get; set; }
         public string UrlHandle { get; set; }
+
+        public Category ToCategory()
+        {
+            return new Category
+            {
+                Id = Id,
+                DateCreated = DateCreated,
+                DateUpdated = DateUpdated,
+                Name = Name,
+                UrlHandle = UrlHandle,
+                DateDeleted = DateDeleted
+            };
+        }
     }
 
     public static class CategoryExtensions

@@ -1,5 +1,6 @@
 ﻿using Blog.Domain.Common;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,7 @@ namespace Blog.Domain.Entities
     {
         public string Name { get; set; }
         public string UrlHandle { get; set; }
+
+        public ICollection<BlogPost> BlogPosts { get; set; } = new List<BlogPost>();
     }
 }

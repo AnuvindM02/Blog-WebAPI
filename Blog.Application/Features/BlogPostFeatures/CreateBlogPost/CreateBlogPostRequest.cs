@@ -27,6 +27,7 @@ namespace Blog.Application.Features.BlogPostFeatures.CreateBlogPost
 
         public bool IsVisible { get; set; }
 
+        public List<Guid> Categories { get; set; }
 
         public BlogPost ToBlogPost()
         {

@@ -9,14 +9,14 @@ using Blog.Application.Features.BlogPostFeatures.CreateBlogPost;
 
 namespace Blog.WebAPI.Controllers
 {
-    public class BlogPostController : CustomControllerBase
+    public class BlogPostsController : CustomControllerBase
     {
         private readonly IBlogPostAdderService _blogPostAdderService;
         private readonly IBlogPostGetterService _blogPostGetterService;
         private readonly IBlogPostDeleterService _blogPostDeleterService;
         private readonly IBlogPostUpdaterService _blogPostUpdaterService;
 
-        public BlogPostController(IBlogPostAdderService blogPostAdderService, IBlogPostGetterService blogPostGetterService, IBlogPostDeleterService blogPostDeleterService, IBlogPostUpdaterService blogPostUpdaterService)
+        public BlogPostsController(IBlogPostAdderService blogPostAdderService, IBlogPostGetterService blogPostGetterService, IBlogPostDeleterService blogPostDeleterService, IBlogPostUpdaterService blogPostUpdaterService)
         {
             _blogPostAdderService = blogPostAdderService;
             _blogPostGetterService = blogPostGetterService;
