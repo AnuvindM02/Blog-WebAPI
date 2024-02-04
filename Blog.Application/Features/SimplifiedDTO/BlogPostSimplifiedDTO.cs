@@ -1,15 +1,14 @@
-﻿using Blog.Application.Features.CategoryFeatures;
-using Blog.Application.Features.SimplifiedDTO;
-using Blog.Domain.Entities;
+﻿using Blog.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Application.Features.BlogPostFeatures.CreateBlogPost
+namespace Blog.Application.Features.SimplifiedDTO
 {
-    public class BlogPostResponse
+    //DTO for eliminating circular reference with category
+    public class BlogPostSimplifiedDTO
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
@@ -23,14 +22,13 @@ namespace Blog.Application.Features.BlogPostFeatures.CreateBlogPost
         public DateTimeOffset DateCreated { get; set; }
         public DateTimeOffset? DateUpdated { get; set; }
         public DateTimeOffset? DateDeleted { get; set; }
-        public List<CategorySimplifiedDTO>? Categories { get; set; }
     }
 
-    public static class BlogPostExtensions
+    public static class BlogPostExtensionSimplified
     {
-        public static BlogPostResponse ToBlogPostResponse(this BlogPost blogPost)
+        public static BlogPostSimplifiedDTO ToBlogPostSimplfied(this BlogPost blogPost)
         {
-            return new BlogPostResponse
+            return new BlogPostSimplifiedDTO
             {
                 Id = blogPost.Id,
                 Title = blogPost.Title,
@@ -44,14 +42,7 @@ namespace Blog.Application.Features.BlogPostFeatures.CreateBlogPost
                 DateCreated = blogPost.DateCreated,
                 DateDeleted = blogPost.DateDeleted,
                 DateUpdated = blogPost.DateUpdated,
-                Categories = blogPost.Categories.Select(x=>x.ToCategorySimplfied()).ToList()
             };
-        }
-
-        public static List<BlogPostResponse> ToBlogPostResponseList(this List<BlogPost> blogPosts)
-        {
-            List<BlogPostResponse> blogPostResponses = blogPosts.Select(x=>x.ToBlogPostResponse()).ToList();
-            return blogPostResponses;
         }
     }
 }

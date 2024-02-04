@@ -64,13 +64,13 @@ namespace Blog.Persistence.Repositories.CategoryRepository
 
         public async Task<List<Category>> GetAllCategories()
         {
-            List<Category> categories = await _db.Categories.OrderBy(x => x.UrlHandle).ToListAsync();
+            List<Category> categories = await _db.Categories.Include(cat => cat.BlogPosts).OrderBy(x => x.UrlHandle).ToListAsync();
             return categories;
         }
 
         public async Task<Category?> GetCategoryById(Guid Id)
         {
-            Category? category = await _db.Categories.FindAsync(Id);
+            Category? category = await _db.Categories.Include(cat => cat.BlogPosts).FirstOrDefaultAsync(cat => cat.Id == Id);
 
             if (category == null)
             {

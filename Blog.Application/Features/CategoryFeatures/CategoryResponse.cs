@@ -1,4 +1,6 @@
-﻿using Blog.Domain.Entities;
+﻿using Blog.Application.Features.BlogPostFeatures.CreateBlogPost;
+using Blog.Application.Features.SimplifiedDTO;
+using Blog.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,7 @@ namespace Blog.Application.Features.CategoryFeatures
         public DateTimeOffset? DateDeleted { get; set; }
         public string Name { get; set; }
         public string UrlHandle { get; set; }
+        public ICollection<BlogPostSimplifiedDTO>? BlogPosts { get; set; }
 
         public Category ToCategory()
         {
@@ -39,7 +42,8 @@ namespace Blog.Application.Features.CategoryFeatures
         /// <returns></returns>
         public static CategoryResponse ToCategoryResponse(this Category category)
         {
-            return new CategoryResponse { Id = category.Id, Name = category.Name, UrlHandle = category.UrlHandle, DateCreated = category.DateCreated, DateDeleted = category.DateDeleted, DateUpdated = category.DateUpdated };
+            return new CategoryResponse { Id = category.Id, Name = category.Name, UrlHandle = category.UrlHandle, DateCreated = category.DateCreated, DateDeleted = category.DateDeleted, DateUpdated = category.DateUpdated,
+            BlogPosts = category.BlogPosts.Select(bp=>bp.ToBlogPostSimplfied()).ToList()};
         }
 
         /// <summary>
